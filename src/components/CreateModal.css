@@ -1,0 +1,271 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 850px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #dbdbdb;
+  position: relative;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.modal-close {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: #f2f2f2;
+}
+
+.modal-body {
+  min-height: 400px;
+}
+
+/* Select Step */
+.select-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  color: #262626;
+}
+
+.select-step svg {
+  margin-bottom: 24px;
+  color: #262626;
+}
+
+.select-step h3 {
+  font-size: 22px;
+  font-weight: 300;
+  margin: 0 0 24px;
+}
+
+.upload-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.select-button {
+  background: #0095f6;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.select-button:hover {
+  background: #1877f2;
+}
+
+.camera-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Details Step */
+.details-step {
+  display: flex;
+  height: 600px;
+}
+
+.details-left {
+  flex: 1.3;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-preview-modal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview-modal img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.details-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #dbdbdb;
+}
+
+.user-info-modal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #efefef;
+}
+
+.user-avatar-modal {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.username-modal {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.caption-textarea {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  resize: none;
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+}
+
+.caption-textarea::placeholder {
+  color: #8e8e8e;
+}
+
+.progress-bar-modal {
+  height: 3px;
+  background: #efefef;
+  margin: 0 16px;
+}
+
+.progress-fill-modal {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s;
+}
+
+.error-modal {
+  color: #ed4956;
+  font-size: 12px;
+  padding: 8px 16px;
+  margin: 0;
+}
+
+.share-button {
+  margin: 16px;
+  padding: 8px 16px;
+  background: #0095f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.share-button:hover:not(:disabled) {
+  background: #1877f2;
+}
+
+.share-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 100%;
+    width: 100%;
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .details-step {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .details-left {
+    flex: 1;
+  }
+
+  .details-right {
+    flex: 0.8;
+    border-left: none;
+    border-top: 1px solid #dbdbdb;
+  }
+}
+

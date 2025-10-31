@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users collection
+    match /users/{userId} {
+      // Allow anyone to read user profiles (needed for login and viewing profiles)
+      allow read: if true;
+      
+      // Only allow users to write to their own profile
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Posts collection
+    match /posts/{postId} {
+      // Anyone can read posts
+      allow read: if true;
+      
+      // Only authenticated users can create posts
+      allow create: if request.auth != null 
+                    && request.resource.data.userId == request.auth.uid;
+      
+      // Only the post owner can update or delete their posts
+      allow update, delete: if request.auth != null 
+                            && resource.data.userId == request.auth.uid;
+    }
+    
+    // Comments collection
+    match /comments/{commentId} {
+      // Anyone can read comments
+      allow read: if true;
+      
+      // Only authenticated users can create comments
+      allow create: if request.auth != null;
+      
+      // Only the comment owner can update or delete their comments
+      allow update, delete: if request.auth != null 
+                            && resource.data.userId == request.auth.uid;
+    }
+    
+    // Messages collection
+    match /messages/{messageId} {
+      // Only authenticated users involved in the conversation can read
+      allow read: if request.auth != null 
+                  && (resource.data.senderId == request.auth.uid 
+                      || resource.data.receiverId == request.auth.uid);
+      
+      // Only authenticated users can create messages
+      allow create: if request.auth != null 
+                    && request.resource.data.senderId == request.auth.uid;
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      // Only the notification owner can read
+      allow read: if request.auth != null 
+                  && resource.data.userId == request.auth.uid;
+      
+      // Only authenticated users can create notifications
+      allow create: if request.auth != null;
+      
+      // Only the notification owner can update or delete
+      allow update, delete: if request.auth != null 
+                            && resource.data.userId == request.auth.uid;
+    }
+  }
+}
+

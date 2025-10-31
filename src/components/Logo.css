@@ -1,0 +1,33 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: 'Pacifico', cursive;
+  font-size: 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-container.small .logo-text {
+  font-size: 18px;
+}
+
+.logo-container.large .logo-text {
+  font-size: 36px;
+}
+
+@media (max-width: 1264px) {
+  .logo-text {
+    display: none;
+  }
+}
+
